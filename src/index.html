@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <title>Open Weather API (Carl Serquina)</title>
+  </head>
+  <body>
+    <div class="w-full overflow-hidden h-full">
+      <div class="flex flex-col items-center">
+        <h1 class="font-bold text-4xl">Open Weather API - Carl Serquina</h1>
+      </div>
+
+      <div class="flex flex-col items-center p-16 text-black">
+        <div class="flex flex-col md:flex-row items-center">
+          <input
+            class="md:w-1/2 mx-2 w-full px-2 py-4 border-2 border-black"
+            id="latitudeinput"
+          />
+
+          <input
+            class="md:w-1/2 mx-2 w-full px-2 py-4 border-2 border-black"
+            id="longitudeinput"
+          />
+        </div>
+
+        <div class="flex flex-col md:flex-row items-center">
+          <button
+            class="w-full px-2 py-2 bg-green-800 text-white"
+            id="getWeather"
+          >
+            Get Weather
+          </button>
+        </div>
+      </div>
+
+      <div class="flex flex-col items-center p-16 text-black"></div>
+    </div>
+
+    <script>
+      const api = {
+        init: () => {
+          document
+            .getElementById("getWeather")
+            .addEventListener("click", app.getWeather);
+          document
+            .getElementById("getLocation")
+            .addEventListener("click", app.getLocation);
+        },
+        getWeather: () => {
+          let lat = document.getElementById("latitudeinput").value;
+          let lon = document.getElementById("longitudeinput").value;
+          let apiKey = "0dbdfa99d6ff01aa7ca46db4934594e7";
+          let language = "en";
+          let units = "metric";
+          let apiUrl = `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&appid=${apiKey}&units=${units}&lang=${language}`;
+
+          //fetching area :-)
+
+          fetch(apiUrl)
+            .then((response) => {
+              if (!response.ok) {
+                throw new Error(response.statusText);
+              } else return response.json();
+            })
+            .then((data) => app.showWeather(data))
+            .catch(console.err);
+        },
+        getLocation: () => {
+          let options = {
+            enableHighAccuracy: true,
+            timeout: 5000,
+            maximumAge: 500000,
+          };
+
+          navigator.geolocation.getCurrentPosition(
+            app.success,
+            app.error,
+            options
+          );
+        },
+        success: () => {
+          document.getElementById("latitudeinput").value =
+            position.coords.latitude.toFixed(2);
+          document.getElementById("longitudeinput").value =
+            position.coords.longitude.toFixed(2);
+        },
+        error: () => {
+          console.error();
+        },
+        showWeather: (response) => {
+          console.log(response);
+
+          let row = document.querySelector("#weather");
+        },
+      };
+
+      api.init();
+    </script>
+  </body>
+</html>

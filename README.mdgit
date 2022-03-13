@@ -1,0 +1,2 @@
+"# agunitycodingchallenge2022"  initgit add README.mdgit commit -m "first commit"git branch -M maingit remote add origin https://github.com/NotCJSBirdie/agunitycodingchallenge2022.gitgit push -u origin main
+"# agunitycodingchallenge2022"  initgit add README.mdgit commit -m "first commit"git branch -M maingit remote add origin https://github.com/NotCJSBirdie/agunitycodingchallenge2022.gitgit push -u origin main
