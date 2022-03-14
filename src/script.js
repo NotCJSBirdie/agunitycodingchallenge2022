@@ -20,7 +20,10 @@ const app = {
     fetch(apiUrl)
       .then((response) => {
         if (!response.ok) {
-          throw new Error(response.statusText);
+          throw (
+            new Error(response.statusText) &&
+            alert("Please enter a Valid location")
+          );
         } else return response.json();
       })
       .then((data) => app.showWeather(data))
@@ -41,7 +44,10 @@ const app = {
     fetch(apiUrl)
       .then((response) => {
         if (!response.ok) {
-          throw new Error(response.statusText);
+          throw (
+            new Error(response.statusText) &&
+            alert("Please enter a Valid location")
+          );
         } else return response.json();
       })
       .then((data) => app.showLocation(data))
@@ -63,7 +69,7 @@ const app = {
 
     row.innerHTML = response.daily
       .map((day, index) => {
-        if (index <= 2) {
+        if (index <= 6) {
           let date = new Date(day.dt * 1000);
           let sunrise = new Date(day.sunrise * 1000).toTimeString();
           let sunset = new Date(day.sunset * 1000).toTimeString();
@@ -74,7 +80,7 @@ const app = {
       class="flex flex-col items-center p-8 text-black"
       
     >
-      <div class="flex flex-col items-center bg-emerald-300" id="">
+      <div class="flex flex-col items-center bg-stone-500" id="">
         <h1 class="font-bold">${date.toDateString()}</h1>
 
         <img src="http://openweathermap.org/img/wn/${
@@ -85,7 +91,7 @@ const app = {
 
               <div
                 id="innercard"
-                class="grid grid-cols-2 grid-rows-11 items-start p-4 text-2xl font-bold m-8 text-white"
+                class="grid grid-cols-2 grid-rows-11 items-start p-4  font-bold m-8 text-white"
               >
 
                 <h1 class="my-2 text-black">Weather</h1>
@@ -108,21 +114,29 @@ const app = {
 
                 <h1 class="my-2">${day.humidity}%</h1>
 
+                <h1 class="my-2 text-black">UV Index</h1>
 
+                <h1 class="my-2">${day.uvi}</h1>
 
-                <h1 class="my-2">Humidity:</h1>
+                <h1 class="my-2 text-black">Precipitation:</h1>
 
-                <h1 class="my-2">UV Index:</h1>
+                <h1 class="my-2">${day.pop * 100}%</h1>
 
-                <h1 class="my-2">Precipitation:</h1>
+                <h1 class="my-2 text-black">Dew Point:</h1>
 
-                <h1 class="my-2">Dew Point:</h1>
+                <h1 class="my-2">${day.dew_point}</h1>
 
-                <h1 class="my-2">Wind Speed and Direction:</h1>
+                <h1 class="my-2 text-black">Wind Speed and Direction:</h1>
 
-                <h1 class="my-2">Sunrise:</h1>
+                <h1 class="my-2">${day.wind_speed}m/s, ${day.wind_deg}°</h1>
 
-                <h1 class="my-2">Sunset:</h1>
+                <h1 class="my-2 text-black">Sunrise:</h1>
+
+                <h1 class="my-2">${sunrise}</h1>
+
+                <h1 class="my-2 text-black">Sunset:</h1>
+
+                <h1 class="my-2">${sunset}</h1>
               </div>
               
               </div>`;

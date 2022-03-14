@@ -1,3 +1,14 @@
+#body {
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+#hero {
+  background-image: url("https://openweathermap.org/themes/openweathermap/assets/img/ukraine.png");
+  background-position: center;
+  background-size: cover;
+  color: #e96e50;
+}
+
 #header {
   background-color: #48484a;
 }
@@ -24,4 +35,8 @@
 
 #innercard {
   background-color: #e96e50;
+}
+
+#footer {
+  background-color: #f2f2f2;
 }
