@@ -1,3 +1,27 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+#header {
+  background-color: #48484a;
+}
+
+#location {
+  background-color: #48484a;
+}
+
+#getWeather {
+  background-color: #48484a;
+}
+
+#getLocation {
+  background-color: #48484a;
+}
+
+#instructions {
+  background-color: #48484a;
+}
+
+#outercard {
+  background-color: #48484a;
+}
+
+#innercard {
+  background-color: #e96e50;
+}
